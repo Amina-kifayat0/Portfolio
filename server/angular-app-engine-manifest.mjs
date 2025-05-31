@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'https://amina-kifayat0.github.io/Portfolio',
+  basePath: '/Portfolio',
   supportedLocales: {
   "en-US": ""
 },
