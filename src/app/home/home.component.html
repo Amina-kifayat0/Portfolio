@@ -1,0 +1,425 @@
+<style>
+  /* Base styles with black & white theme */
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --primary-accent: #000000;
+    --secondary-accent: #333333;
+    --light-gray: #f5f5f5;
+    --dark-gray: #222222;
+    --navy-blue: #000080; /* Added navy blue color */
+  }
+
+  /* Main wrapper for the layout */
+  .main-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Container setup */
+  .home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    box-sizing: border-box;
+    flex: 1;
+  }
+
+  /* Right side panel */
+  .right-panel {
+    width: 400px;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  /* Contact details styling */
+  .contact-title {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+  }
+
+  .contact-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: white;
+  }
+
+  .contact-email {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    opacity: 0.8;
+  }
+
+  /* Decorative elements for the right panel */
+  .right-panel::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .right-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Greeting text */
+  .greeting {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-accent);
+    font-style: italic;
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Big bold name */
+  .name {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0;
+    color: var(--primary-accent);
+    letter-spacing: 1px;
+    text-align: left;
+    width: 100%;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  /* Intro line */
+  .intro {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: var(--text-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Roles container */
+  .roles {
+    position: relative;
+    width: 230px;
+    height: 45px;
+    overflow: hidden;
+    font-weight: 700;
+    color: var(--dark-gray);
+    line-height: 40px;
+    text-align: left;
+  }
+
+  /* Each role span stacked */
+  .roles span {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    animation: slideRoles 9s infinite;
+    line-height: 40px;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  /* Animation delay for each role */
+  .roles span:nth-child(1) { animation-delay: 0s; }
+  .roles span:nth-child(2) { animation-delay: 3s; }
+  .roles span:nth-child(3) { animation-delay: 6s; }
+
+  /* Animation to fade and slide roles up */
+  @keyframes slideRoles {
+    0% { opacity: 0; transform: translateY(100%); }
+    10% { opacity: 1; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(0); }
+    40% { opacity: 0; transform: translateY(-100%); }
+    100% { opacity: 0; }
+  }
+
+  /* Description paragraph */
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin: 2rem 0;
+    max-width: 700px;
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Buttons container */
+  .buttons {
+    display: flex;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  /* Button styles */
+  .btn {
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 50px; /* More oval shape */
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solild rgb(45, 45, 131); /* Navy blue border */
+  }
+
+  /* Primary button (Download CV) */
+  .btn.primary {
+    background-color: black;
+    color: white;
+    border-color: black; /* Navy blue border */
+  }
+
+  .btn.primary:hover {
+    background-color: rgb(112, 108, 108);
+    color: white;
+    border-color: rgb(112, 108, 108); /* Maintain border on hover */
+  }
+
+  /* Secondary buttons */
+  .btn.secondary {
+    background-color: black;
+    color: white;
+    border: 2px solid black; /* Navy blue border */
+  }
+
+  .btn.secondary:hover {
+    background-color:rgb(112, 108, 108);
+    color: var(--bg-color);
+    border-color:rgb(112, 108, 108); /* Maintain border on hover */
+  }
+
+  /* Dropdown container styles */
+  .dropdown {
+    position: relative;
+    user-select: none;
+  }
+
+  /* Dropdown content container, hidden by default */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background-color: var(--bg-color);
+    min-width: 140px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    border: 1px solid var(--light-gray);
+  }
+
+  /* Show dropdown on hover */
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+
+  /* Dropdown links styling */
+  .dropdown-content a {
+    color: var(--text-color);
+    padding: 0.7rem 1.2rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.25s ease;
+    border-left: 3px solid transparent; /* Add left border */
+  }
+
+  /* Hover effect on dropdown items */
+  .dropdown-content a:hover {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    border-left: 3px solid var(--navy-blue); /* Navy blue accent */
+  }
+
+  /* Adjust dropdown button cursor */
+  .dropdown {
+    cursor: pointer;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .right-panel {
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .right-panel {
+      display: none;
+    }
+
+    .home-container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .home-container {
+      padding: 2rem 1.5rem;
+      justify-content: flex-start;
+      padding-top: 5rem;
+    }
+
+    .name {
+      font-size: 3rem;
+    }
+
+    .intro {
+      font-size: 1.3rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .name {
+      font-size: 2.5rem;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+    }
+
+    .btn {
+      font-size: 1rem;
+      padding: 0.7rem 1.5rem;
+    }
+
+    .roles {
+      width: 150px;
+      height: 25px;
+      line-height: 25px;
+      margin-left: 0;
+    }
+    .roles span {
+      line-height: 25px;
+    }
+
+    /* Dropdown tweaks */
+    .dropdown-content {
+      min-width: 120px;
+    }
+    .dropdown-content a {
+      font-size: 0.9rem;
+    }
+
+    .buttons {
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .name {
+      font-size: 2rem;
+    }
+
+    .buttons {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<div class="main-wrapper">
+  <div class="home-container">
+    <p class="greeting">Assalam o Alaikum! It's Me,</p>
+    <h1 class="name">Amina Kifayat</h1>
+
+    <p class="intro">
+      I am a
+      <span class="roles">
+        <span>Software Engineer</span>
+        <span>Full Stack Developer</span>
+        <span>Technical Writer</span>
+      </span>
+    </p>
+
+    <p class="description" style="
+      text-align: justify;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-left: 8px;
+    ">
+      I am a passionate and versatile Software Engineer with a strong inclination towards building innovative, user-centric digital solutions. With a solid foundation in full-stack development and a keen eye for detail, I thrive in transforming ideas into scalable, efficient applications. Beyond coding, I bring expertise in technical and business documentation, including manuals, project reports, and end-to-end system documentation—ensuring clarity and coherence in every phase of development. I am eager to apply my technical proficiency and problem-solving mindset to real-world challenges, and I actively seek opportunities where I can continue learning, collaborate with dynamic teams, and make meaningful contributions to impactful projects.
+    </p>
+
+    <div class="buttons">
+<a href="/Amina-Kifayat-CV.pdf" download class="btn primary">Download CV</a>
+
+      <div class="dropdown btn secondary">
+        Services
+        <div class="dropdown-content">
+          <a routerLink="/docs">Documentation</a>
+          <a routerLink="/projects">Projects</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="contact-title" style="font-size: 20px;">Interested in Working Together? Feel Free to reach out to me via Email:</div>
+    <div class="contact-email"> amnakifayat10gujrat&#64;gmail.com</div>
+  </div>
+</div>

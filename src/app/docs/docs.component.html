@@ -1,0 +1,398 @@
+<style>
+  :root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #f59e0b;
+    --dark: #0f172a;
+    --darker: #020617;
+    --light: #f8fafc;
+    --section-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --card-bg: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+    --accent-glow: rgba(99, 102, 241, 0.15);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #f1f5f9;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Animated Gradient Border */
+  @keyframes borderRotate {
+    100% { --angle: 360deg; }
+  }
+
+  @property --angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  /* Main Section */
+  .docs-section {
+    background: var(--section-bg);
+    padding: 6rem 0;
+    margin: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .docs-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.1) 0%, transparent 40%);
+    z-index: 0;
+  }
+
+  /* Container */
+  .docs-portfolio {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header */
+  .docs-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .docs-header h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #f59e0b, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .docs-header p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  /* Grid Layout */
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+  }
+
+  /* Cards - Modern Glass Morphism */
+  .doc-card {
+    background: var(--card-bg);
+    color: var(--light);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow:
+      0 8px 32px rgba(2, 6, 23, 0.3),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Animated Border */
+  .doc-card::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--angle),
+      transparent 20%,
+      #6366f1,
+      #f59e0b,
+      transparent 80%
+    );
+    border-radius: inherit;
+    animation: borderRotate 6s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .doc-card:hover::after {
+    opacity: 0.7;
+  }
+
+  /* Card Content */
+  .doc-card h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #f59e0b;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .doc-card h3 svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .doc-card p {
+    color: #94a3b8;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+  }
+
+  /* Button */
+  .doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .doc-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  .doc-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+  }
+
+  .doc-link:hover::before {
+    left: 100%;
+  }
+
+  .doc-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+  }
+
+  .doc-link:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Template Card Special */
+  .template-card {
+    background: linear-gradient(145deg, #1e1b4b, #0f172a);
+    border: 1px solid rgba(79, 70, 229, 0.3);
+  }
+
+  .template-card h3 {
+    color: #a5b4fc;
+  }
+
+  .template-card .doc-link {
+    background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .template-card .doc-link:hover {
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .docs-header h2 {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .docs-header h2 {
+      font-size: 2.5rem;
+    }
+
+    .docs-header p {
+      font-size: 1.1rem;
+    }
+
+    .docs-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .doc-card {
+      padding: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .docs-portfolio {
+      padding: 0 1.5rem;
+    }
+
+    .docs-header h2 {
+      font-size: 2.25rem;
+    }
+
+    .doc-card {
+      padding: 2rem;
+    }
+  }
+
+  /* Floating Animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .doc-card:hover {
+    animation: float 4s ease-in-out infinite;
+  }
+</style>
+
+<section class="docs-section">
+  <div class="docs-portfolio">
+    <div class="docs-header">
+      <h2>Premium Documentation Solutions</h2>
+      <p>Expertly crafted technical documentation that bridges the gap between complex systems and end-users.</p>
+    </div>
+
+    <div class="docs-grid">
+      <!-- Report Writing -->
+      <div class="doc-card">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Technical Reports
+        </h3>
+        <p>Detailed Explanations of Incidents with Visuals.</p>
+        <a href="/Report.pdf" class="doc-link" target="_blank" style="color: rgb(212, 202, 64);">
+          View Samples
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- User Manuals -->
+      <div class="doc-card">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          User Manuals
+        </h3>
+        <p>Comprehensive guides with annotated screenshots, troubleshooting flows, and quick-start checklists for seamless onboarding.</p>
+        <a href="/Manual.pdf" class="doc-link" target="_blank" style="color: rgb(212, 202, 64);">
+          View Samples
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- API Docs -->
+      <div class="doc-card">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Procedural Docs
+        </h3>
+        <p>Step-by-step detailed Procedural documentation for Technical and Business Writing</p>
+        <a href="/procedure.pdf" class="doc-link" target="_blank" style="color: rgb(212, 202, 64);">
+          View Samples
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Full Documentation Template -->
+      <div class="doc-card template-card">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Complete Documentation Kit
+        </h3>
+        <p><strong>All-in-one package:</strong> UML diagrams, architecture blueprints, test cases, API docs, and modular templates.</p>
+
+        <div style="margin-top: 2rem; background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 16px; border-left: 3px solid #6366f1;">
+          <p style="color: #e2e8f0; margin-bottom: 1.5rem; font-size: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Ready-to-use templates with customization guide
+          </p>
+          <a href="mailto:amnakifayat10gujrat@gmail.com?subject=Request%20Complete%20Documentation%20Kit&body=Hello%20Amna,%0A%0AI'd%20like%20to%20request%20your%20complete%20documentation%20template%20kit.%20Please%20share%20details%20about%20pricing%20and%20deliverables.%0A%0ABest%20regards," class="doc-link" style="width: 100%; text-align: center; justify-content: center;">
+            Get Instant Access
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center; background: rgba(165, 180, 252, 0.1); padding: 0.75rem; border-radius: 8px;">
+          <p style="color: #a5b4fc; font-size: 0.9rem; font-weight: 500;">
+            Email: <span style="color: #f59e0b;">amnakifayat10gujrat&#64;gmail.com</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Enhanced interactive effects
+  document.querySelectorAll('.doc-card').forEach(card => {
+    // Mouse position glow
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+
+    // Touch support for mobile
+    card.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${touch.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${touch.clientY - rect.top}px`);
+    });
+  });
+</script>
