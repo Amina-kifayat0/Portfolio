@@ -1,0 +1,7 @@
+{
+  "routes": {
+    "/Portfolio": {},
+    "/Portfolio/docs": {},
+    "/Portfolio/projects": {}
+  }
+}
