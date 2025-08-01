@@ -140,16 +140,18 @@
     width: 100%;
   }
 
-  /* Roles container */
+  /* Roles container - modified for better mobile responsiveness */
   .roles {
     position: relative;
-    width: 250px;
+    width: 100%;
     height: 45px;
     overflow: hidden;
     font-weight: 700;
     color: var(--dark-gray);
     line-height: 40px;
     text-align: left;
+    display: inline-block;
+    vertical-align: top;
   }
 
   /* Each role span stacked */
@@ -161,8 +163,10 @@
     left: 0;
     animation: slideRoles 9s infinite;
     line-height: 40px;
-    white-space: nowrap;
     text-align: left;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* Animation delay for each role */
@@ -203,7 +207,7 @@
   .btn {
     text-decoration: none;
     padding: 0.85rem 2rem;
-    border-radius: 50px; /* More oval shape */
+    border-radius: 50px;
     font-weight: 700;
     font-size: 1.1rem;
     cursor: pointer;
@@ -212,33 +216,33 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 2px solild rgb(45, 45, 131); /* Navy blue border */
+    border: 2px solild rgb(45, 45, 131);
   }
 
   /* Primary button (Download CV) */
   .btn.primary {
     background-color: black;
     color: white;
-    border-color: black; /* Navy blue border */
+    border-color: black;
   }
 
   .btn.primary:hover {
     background-color: rgb(112, 108, 108);
     color: white;
-    border-color: rgb(112, 108, 108); /* Maintain border on hover */
+    border-color: rgb(112, 108, 108);
   }
 
   /* Secondary buttons */
   .btn.secondary {
     background-color: black;
     color: white;
-    border: 2px solid black; /* Navy blue border */
+    border: 2px solid black;
   }
 
   .btn.secondary:hover {
     background-color:rgb(112, 108, 108);
     color: var(--bg-color);
-    border-color:rgb(112, 108, 108); /* Maintain border on hover */
+    border-color:rgb(112, 108, 108);
   }
 
   /* Dropdown container styles */
@@ -276,14 +280,14 @@
     font-weight: 600;
     font-size: 1rem;
     transition: all 0.25s ease;
-    border-left: 3px solid transparent; /* Add left border */
+    border-left: 3px solid transparent;
   }
 
   /* Hover effect on dropdown items */
   .dropdown-content a:hover {
     background-color: var(--light-gray);
     color: var(--dark-gray);
-    border-left: 3px solid var(--navy-blue); /* Navy blue accent */
+    border-left: 3px solid var(--navy-blue);
   }
 
   /* Adjust dropdown button cursor */
@@ -327,6 +331,29 @@
     .description {
       font-size: 1rem;
     }
+
+    .roles {
+      height: auto;
+      min-height: 40px;
+      line-height: 1.3;
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    .roles span {
+      position: relative;
+      display: block;
+      opacity: 1;
+      animation: none;
+      line-height: 1.3;
+      white-space: normal;
+      width: auto;
+    }
+
+    /* Hide all but first role by default */
+    .roles span:not(:first-child) {
+      display: none;
+    }
   }
 
   @media (max-width: 600px) {
@@ -336,8 +363,8 @@
 
     .intro {
       font-size: 1.1rem;
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 0.3rem;
     }
 
@@ -347,13 +374,9 @@
     }
 
     .roles {
-      width: 100px;
-      height: 25px;
-      line-height: 25px;
+      width: 100%;
       margin-left: 0;
-    }
-    .roles span {
-      line-height: 25px;
+      height: auto;
     }
 
     /* Dropdown tweaks */
@@ -406,7 +429,9 @@
     </p>
 
     <div class="buttons">
-<a href="assets/Amina-Kifayat-CV.pdf" download class="btn primary">Download CV</a>
+      <div>
+        <a href="Amina-Kifayat-CV.pdf" download class="btn primary">Download CV</a>
+      </div>
 
       <div class="dropdown btn secondary">
         Services
